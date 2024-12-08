@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem de Aniversário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(to bottom, #ffcccc, #ff99cc);
+            color: #660033;
+        }
+
+        button {
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ff3399;
+        }
+
+        .result {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .foto-coracao {
+            width: 300px; /* Tamanho da foto */
+            height: 300px;
+            clip-path: polygon(50% 0%, 100% 35%, 85% 100%, 50% 75%, 15% 100%, 0% 35%);
+            background-color: pink;
+            background-size: cover;
+            background-position: center;
+            margin: 20px auto;
+            display: none;
+        }
+
+        .foto-coracao + .foto-coracao {
+            margin-top: 20px; /* Espaço entre as fotos */
+        }
+
+        .result h2 {
+            color: #99004d;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .aniversario-animado {
+            font-size: 24px;
+            color: #ff3399;
+            font-weight: bold;
+            animation: fadeInOut 2s infinite;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Digite sua idade</h1>
+    <input type="number" id="idade" placeholder="Idade" min="1">
+    <button onclick="mostrarMensagem()">Mostrar Mensagem</button>
+
+    <div class="result" id="result">
+        <h2 id="mensagem"></h2>
+        <div class="foto-coracao" id="foto1"></div>
+        <div class="foto-coracao" id="foto2"></div>
+        <div class="aniversario-animado" id="animacao">🎉 Feliz Aniversário! 🎉</div>
+    </div>
+
+    <script>
+        function mostrarMensagem() {
+            // Obtém a idade inserida
+            var idade = document.getElementById("idade").value;
+            var mensagem = document.getElementById("mensagem");
+            var foto1 = document.getElementById("foto1");
+            var foto2 = document.getElementById("foto2");
+            var animacao = document.getElementById("animacao");
+            var result = document.getElementById("result");
+
+            // Verifica se a idade foi preenchida
+            if (idade === "") {
+                alert("Por favor, digite sua idade.");
+                return;
+            }
+
+            idade = parseInt(idade); // Converte para número
+
+            // Exibe mensagem e fotos se a idade for 17
+            if (idade === 17) {
+                mensagem.textContent = "Minha irmã, você é mais que um simples laço de sangue, é uma amiga, uma parceira, alguém que torna a vida mais colorida e cheia de sentido. Em cada risada, em cada conversa, aprendendo mais sobre o amor e a lealdade. Neste seu dia, desejo que o mundo te abrace com toda a felicidade que você merece. Que seus sonhos se realizem, que sua força seja sempre seu guia e que a vida te surpreenda de forma maravilhosa, como você sempre surpreende a todos ao seu redor. Que Deus abençoe sua jornada, ilumine seus passos e te proteja sempre.\n\nE não poderia deixar de mencionar o quanto você é especial para a pequena Eloah Isabelly, que te ama profundamente! Você não é só uma tia, é uma segunda mãe para ela, alguém que traz alegria, carinho e amor para a vida dela. Feliz aniversário, irmã querida!";
+                
+                // Define a primeira foto
+                foto1.style.backgroundImage = "url('foto-irma.jpg')";
+                foto1.style.display = "block";
+
+                // Define a segunda foto
+                foto2.style.backgroundImage = "url('irma-filha.jpg')";
+                foto2.style.display = "block";
+
+                // Exibe a animação de "Feliz Aniversário"
+                animacao.style.display = "block";
+            } else {
+                mensagem.textContent = "Idade fora do intervalo esperado! Tente novamente.";
+                foto1.style.display = "none"; // Esconde a primeira foto
+                foto2.style.display = "none"; // Esconde a segunda foto
+                animacao.style.display = "none"; // Esconde a animação
+            }
+
+            result.style.display = "block"; // Mostra o resultado
+        }
+    </script>
+
+</body>
+</html>
